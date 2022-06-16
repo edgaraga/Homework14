@@ -64,4 +64,22 @@ public class TicketManagerTest {
 
         assertArrayEquals(expected,actual);
     }
+
+    @Test
+    public void shouldFindAndSortTicketAddComparator() {
+        TicketRepository repo = new TicketRepository();
+        TicketManager manager = new TicketManager(repo);
+
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+
+        Ticket[] actual = manager.findAll("SVO", "SVP");
+        Ticket[] expected = {ticket4, ticket1, ticket3};
+
+        assertArrayEquals(expected,actual);
+    }
+
 }
